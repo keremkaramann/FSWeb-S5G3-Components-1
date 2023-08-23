@@ -44,25 +44,12 @@ function menuYapici(arr) {
   container1.className = "menu";
 
   const list = document.createElement("ul");
-  const li1 = document.createElement("li");
-  const li2 = document.createElement("li");
-  const li3 = document.createElement("li");
-  const li4 = document.createElement("li");
-  const li5 = document.createElement("li");
-  const li6 = document.createElement("li");
-  li1.textContent = arr[0];
-  li2.textContent = arr[1];
-  li3.textContent = arr[2];
-  li4.textContent = arr[3];
-  li5.textContent = arr[4];
-  li6.textContent = arr[5];
 
-  list.append(li1);
-  list.append(li2);
-  list.append(li3);
-  list.append(li4);
-  list.append(li5);
-  list.append(li6);
+  arr.forEach((e) => {
+    const li = document.createElement("li");
+    li.textContent = e;
+    list.appendChild(li);
+  });
 
   container1.append(list);
 
