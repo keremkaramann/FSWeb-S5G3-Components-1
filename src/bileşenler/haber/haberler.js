@@ -88,6 +88,15 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
   },
+  {
+    baslik: "Ressam Bob",
+    tarih: "23 Ağustos 2023",
+    ilkParagraf: `You could sit here for weeks with your one hair brush trying to do that - or you could do it with one stroke with an almighty brush. Use what happens naturally, don't fight it. We want to use a lot pressure while using no pressure at all. Every highlight needs it's own personal shadow. Let's put some happy little bushes on the other side now. `,
+
+    ikinciParagraf: `Volunteering your time; it pays you and your whole community fantastic dividends. We can always carry this a step further. There's really no end to this. We can fix anything. By now you should be quite happy about what's happening here. Almost everything is going to happen for you automatically - you don't have to spend any time working or worrying.`,
+
+    ucuncuParagraf: `We'll do another happy little painting. Maybe, just to play a little, we'll put a little tree here. If you hypnotize it, it will go away.`,
+  },
 ];
 
 /*
@@ -109,9 +118,50 @@ const data = [
 
   Adım 3: Fonksiyonunuzdan bir öğe döndürmeyi unutmayın.
 
-  Adım 4: Fonksiyonunuzun dışında, tüm datayı döngüye sokun(loop). Bir div.article öğesi oluşturmak ve bunu div.articles içindeki DOM'a eklemek için
+  Adım 4: Fonksiyonunuzun dışında, tüm datayı döngüye sokun(loop). Bir div.article öğesi oluşturmak 
+  ve bunu div.articles içindeki DOM'a eklemek için
   her yinelemede oluşturduğunuz bileşeninizi kullanacaksınız(bknz. index.html).
 
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+function haberYapici(data) {
+  const container1 = document.createElement("div");
+  container1.className = "article";
+
+  const header = document.createElement("h2");
+  header.textContent = data.baslik;
+
+  const p1 = document.createElement("p");
+  const p2 = document.createElement("p");
+  const p3 = document.createElement("p");
+  p1.className = "tarih";
+  p2.className = "tarih";
+  p3.className = "tarih";
+
+  p1.textContent = data.ilkParagraf;
+  p2.textContent = data.ikinciParagraf;
+  p3.textContent = data.ucuncuParagraf;
+
+  const btn = document.createElement("button");
+  btn.className = "expandButton";
+  btn.textContent = "+";
+
+  btn.addEventListener("click", (e) => {
+    container1.classList.toggle("article-open");
+  });
+
+  container1.append(header);
+  container1.append(p1);
+  container1.append(p2);
+  container1.append(p3);
+  container1.append(btn);
+  return container1;
+}
+
+const htmlDiv = document.querySelector(".articles");
+
+for (let news of data) {
+  const newsCard = haberYapici(news);
+  htmlDiv.append(newsCard);
+}
